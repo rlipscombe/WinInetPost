@@ -1,0 +1,358 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,3,0
+ PRODUCTVERSION 0,0,3,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "differentpla.net"
+            VALUE "FileDescription", "WinInet HTTP POST Wizard"
+            VALUE "FileVersion", "0.0.3.0"
+            VALUE "InternalName", "WinInetPost.exe"
+            VALUE "LegalCopyright", "(c) 2004 Roger Lipscombe.  All rights reserved."
+            VALUE "OriginalFilename", "WinInetPost.exe"
+            VALUE "ProductName", "WinInetPost"
+            VALUE "ProductVersion", "0.0.3.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WELCOME_PAGE DIALOGEX 0, 0, 317, 193
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "File Upload Wizard",IDC_TITLE,115,8,195,24
+    LTEXT           "Welcome to the File Upload Wizard.",IDC_STATIC,115,40,
+                    195,12
+    LTEXT           "This example MFC application shows how to use the WinInet API to upload multiple files and fields to a webpage, using HTTP POST.",
+                    IDC_STATIC,115,62,195,28
+    LTEXT           "Press the ""Next"" button to continue",IDC_STATIC,115,
+                    169,195,8
+END
+
+IDD_PROGRESS_PAGE DIALOGEX 0, 0, 317, 146
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "(IDC_MESSAGE)",IDC_MESSAGE,21,1,275,8
+    CONTROL         "",IDC_PROGRESSCTRL,"msctls_progress32",WS_BORDER,21,14,
+                    275,14
+    LTEXT           "(IDC_TIME_REMAINING)",IDC_TIME_REMAINING,21,33,275,8
+END
+
+IDD_COMPLETE_PAGE DIALOGEX 0, 0, 317, 193
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "(IDC_TITLE)",IDC_TITLE,115,8,195,24
+    LTEXT           "(IDC_MESSAGE)",IDC_MESSAGE,140,40,170,50
+    LTEXT           "Press the ""Finish"" button to close this wizard.",
+                    IDC_STATIC,115,169,195,8
+    ICON            "",IDC_COMPLETION_ICON,115,40,20,20
+END
+
+IDD_SELECTION_PAGE DIALOGEX 0, 0, 317, 146
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_LISTCTRL,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | 
+                    WS_TABSTOP,21,8,221,125
+    PUSHBUTTON      "Add File...",IDC_ADD_FILE,246,8,50,14
+    PUSHBUTTON      "Add Field...",IDC_ADD_FIELD,246,25,50,14
+    PUSHBUTTON      "Delete",IDC_DELETE,246,42,50,14
+END
+
+IDD_ADDRESS_PAGE DIALOGEX 0, 0, 317, 146
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "Address:",IDC_STATIC,21,20,33,8
+    EDITTEXT        IDC_ADDRESS,59,17,237,14,ES_AUTOHSCROLL
+END
+
+IDD_ADD_FIELD DIALOGEX 0, 0, 244, 69
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Add Field"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Field Name:",IDC_STATIC,7,10,38,8
+    EDITTEXT        IDC_FIELD_NAME,55,7,112,14,ES_AUTOHSCROLL
+    LTEXT           "Field Value:",IDC_STATIC,7,29,38,8
+    EDITTEXT        IDC_FIELD_VALUE,55,26,112,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,187,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,187,24,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_WELCOME_PAGE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 310
+        VERTGUIDE, 115
+        BOTTOMMARGIN, 186
+        HORZGUIDE, 8
+        HORZGUIDE, 32
+        HORZGUIDE, 40
+        HORZGUIDE, 90
+        HORZGUIDE, 177
+    END
+
+    IDD_PROGRESS_PAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 310
+        VERTGUIDE, 21
+        VERTGUIDE, 296
+        TOPMARGIN, 1
+    END
+
+    IDD_COMPLETE_PAGE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 310
+        VERTGUIDE, 115
+        BOTTOMMARGIN, 186
+        HORZGUIDE, 8
+        HORZGUIDE, 32
+        HORZGUIDE, 40
+        HORZGUIDE, 90
+        HORZGUIDE, 177
+    END
+
+    IDD_SELECTION_PAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 310
+        VERTGUIDE, 21
+        VERTGUIDE, 296
+        TOPMARGIN, 1
+    END
+
+    IDD_ADDRESS_PAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 310
+        VERTGUIDE, 21
+        VERTGUIDE, 296
+        TOPMARGIN, 1
+    END
+
+    IDD_ADD_FIELD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 237
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_WATERMARK           BITMAP                  "res\\watermark.bmp"
+IDB_HEADER              BITMAP                  "res\\header.bmp"
+IDB_LIST_IMAGES         BITMAP                  "res\\list_images.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\WinInetPost.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_UNUSED_CAPTION      "(unused)"
+    IDP_MUST_ADD_FIELDS_OR_FILES "You must add fields or files to continue"
+    IDS_FIELDNAME_HEADING   "Field Name"
+    IDS_FIELDVALUE_HEADING  "Field Value"
+    IDS_FIELDNAME_FORMAT_FILE "file%1!d!"
+    IDP_INVALID_ADDRESS     "Invalid or unsupported URL"
+    IDS_COMPLETE_PAGE_CAPTION "Upload Files"
+    IDS_ADDRESS_PAGE_CAPTION "Upload Files"
+    IDS_ADDRESS_PAGE_TITLE  "Script Address"
+    IDS_ADDRESS_PAGE_SUBTITLE 
+                            "Enter the URL of the script that will receive the uploaded files."
+    IDS_UPLOADING_FILE      "Uploading %1!s!"
+    IDS_UPLOADING_FILE_RATE "Uploading %1!s!, %2!s!/s"
+    IDS_TIME_REMAINING      "Estimated Time Remaining: %1!s!"
+    IDS_UPLOAD_STARTING     "Upload starting"
+    IDS_UPLOAD_COMPLETE     "Upload complete"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WELCOME_PAGE_CAPTION "Upload Files"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SELECTION_PAGE_CAPTION "Upload Files"
+    IDS_SELECTION_PAGE_TITLE "Add Files/Fields"
+    IDS_SELECTION_PAGE_SUBTITLE 
+                            "Modify the list of files and fields to be sent to the script."
+    IDS_PROGRESS_PAGE_CAPTION "Upload Files"
+    IDS_PROGRESS_PAGE_TITLE "Uploading"
+    IDS_PROGRESS_PAGE_SUBTITLE "Uploading files/fields..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SUCCESSFUL_UPLOAD_TITLE "Upload Succeeded"
+    IDS_FAILED_UPLOAD_TITLE "Upload Failed"
+    IDS_CANCELLED_UPLOAD_TITLE "Upload Cancelled"
+    IDS_SUCCESSFUL_UPLOAD_MESSAGE 
+                            "Successfully uploaded files/fields to server."
+    IDS_CANCELLED_UPLOAD_MESSAGE "The upload process was cancelled."
+    IDS_FAILED_UPLOAD_MESSAGE "The upload failed: %1!s!"
+    IDS_HTTP_FAILED_UPLOAD_MESSAGE 
+                            "Upload failed.  The server reported HTTP result code %1!d!"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\WinInetPost.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+UPLOAD.PHP              HTML                    "res\\upload.php"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\WinInetPost.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

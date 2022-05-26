@@ -3,8 +3,8 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="WinInetPost"
-	ProjectGUID="{292885F3-BA0F-44A5-8F55-9364F75EE0C0}"
-	Keyword="Win32Proj">
+	ProjectGUID="{8BD70740-F481-454C-A395-C76C65D106E1}"
+	Keyword="MFCProj">
 	<Platforms>
 		<Platform
 			Name="Win32"/>
@@ -15,15 +15,17 @@
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
 			ConfigurationType="1"
+			UseOfMFC="2"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				UsePrecompiledHeader="0"
+				RuntimeLibrary="3"
+				TreatWChar_tAsBuiltInType="TRUE"
+				UsePrecompiledHeader="3"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"/>
@@ -31,14 +33,14 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/WinInetPost.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/WinInetPost.pdb"
-				SubSystem="1"
+				SubSystem="2"
 				TargetMachine="1"/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="FALSE"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -46,7 +48,10 @@
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -63,12 +68,15 @@
 			OutputDirectory="Release"
 			IntermediateDirectory="Release"
 			ConfigurationType="1"
+			UseOfMFC="2"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				RuntimeLibrary="4"
-				UsePrecompiledHeader="0"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
+				MinimalRebuild="FALSE"
+				RuntimeLibrary="2"
+				TreatWChar_tAsBuiltInType="TRUE"
+				UsePrecompiledHeader="3"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="3"/>
@@ -76,15 +84,16 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/WinInetPost.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"
-				SubSystem="1"
+				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="FALSE"/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
 			<Tool
@@ -92,7 +101,118 @@
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Debug Unicode|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			UseOfMFC="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="UNICODE;_UNICODE"
+				MinimalRebuild="TRUE"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				TreatWChar_tAsBuiltInType="TRUE"
+				UsePrecompiledHeader="3"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="2"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				EntryPointSymbol="wWinMainCRTStartup"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="FALSE"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release Unicode|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			UseOfMFC="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				PreprocessorDefinitions="UNICODE;_UNICODE"
+				MinimalRebuild="FALSE"
+				RuntimeLibrary="2"
+				TreatWChar_tAsBuiltInType="TRUE"
+				UsePrecompiledHeader="3"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				LinkIncremental="1"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				EntryPointSymbol="wWinMainCRTStartup"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="FALSE"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -113,20 +233,206 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
+				RelativePath=".\AddFieldDialog.cpp">
+			</File>
+			<File
+				RelativePath=".\AddressPage.cpp">
+			</File>
+			<File
+				RelativePath=".\ApplicationProfile.cpp">
+			</File>
+			<File
+				RelativePath=".\CompletePage.cpp">
+			</File>
+			<File
+				RelativePath=".\FormatErrorMessage.cpp">
+			</File>
+			<File
+				RelativePath=".\ProgressPage.cpp">
+			</File>
+			<File
+				RelativePath=".\safe_snprintf.cpp">
+			</File>
+			<File
+				RelativePath=".\SelectionPage.cpp">
+			</File>
+			<File
+				RelativePath=".\stdafx.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug Unicode|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release Unicode|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Thread.cpp">
+			</File>
+			<File
+				RelativePath=".\trace.cpp">
+			</File>
+			<File
+				RelativePath=".\Uploader.cpp">
+			</File>
+			<File
+				RelativePath=".\UploadProgressProxyWindow.cpp">
+			</File>
+			<File
+				RelativePath=".\UploadSettings.cpp">
+			</File>
+			<File
+				RelativePath=".\UploadThread.cpp">
+			</File>
+			<File
+				RelativePath=".\UploadWizard.cpp">
+			</File>
+			<File
+				RelativePath=".\VersionInfo.cpp">
+			</File>
+			<File
+				RelativePath=".\WelcomePage.cpp">
+			</File>
+			<File
 				RelativePath=".\WinInetPost.cpp">
+			</File>
+			<File
+				RelativePath=".\WizardPage.cpp">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath=".\AddFieldDialog.h">
+			</File>
+			<File
+				RelativePath=".\AddressPage.h">
+			</File>
+			<File
+				RelativePath=".\ApplicationProfile.h">
+			</File>
+			<File
+				RelativePath=".\CompletePage.h">
+			</File>
+			<File
+				RelativePath=".\FieldInfo.h">
+			</File>
+			<File
+				RelativePath=".\FileInfo.h">
+			</File>
+			<File
+				RelativePath=".\FormatErrorMessage.h">
+			</File>
+			<File
+				RelativePath=".\MultiFileDialog.h">
+			</File>
+			<File
+				RelativePath=".\ProgressPage.h">
+			</File>
+			<File
+				RelativePath=".\Resource.h">
+			</File>
+			<File
+				RelativePath=".\safe_snprintf.h">
+			</File>
+			<File
+				RelativePath=".\SelectionPage.h">
+			</File>
+			<File
+				RelativePath=".\stdafx.h">
+			</File>
+			<File
+				RelativePath=".\Thread.h">
+			</File>
+			<File
+				RelativePath=".\trace.h">
+			</File>
+			<File
+				RelativePath=".\Uploader.h">
+			</File>
+			<File
+				RelativePath=".\UploadProgress.h">
+			</File>
+			<File
+				RelativePath=".\UploadProgressProxyWindow.h">
+			</File>
+			<File
+				RelativePath=".\UploadResults.h">
+			</File>
+			<File
+				RelativePath=".\UploadSettings.h">
+			</File>
+			<File
+				RelativePath=".\UploadThread.h">
+			</File>
+			<File
+				RelativePath=".\UploadWizard.h">
+			</File>
+			<File
+				RelativePath=".\VersionInfo.h">
+			</File>
+			<File
+				RelativePath=".\WelcomePage.h">
+			</File>
+			<File
+				RelativePath=".\WinInetPost.h">
+			</File>
+			<File
+				RelativePath=".\WizardPage.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+			<File
+				RelativePath=".\res\header.bmp">
+			</File>
+			<File
+				RelativePath=".\res\list_images.bmp">
+			</File>
+			<File
+				RelativePath=".\res\upload.php">
+			</File>
+			<File
+				RelativePath=".\res\watermark.bmp">
+			</File>
+			<File
+				RelativePath=".\res\WinInetPost.ico">
+			</File>
+			<File
+				RelativePath=".\WinInetPost.rc">
+			</File>
+			<File
+				RelativePath=".\res\WinInetPost.rc2">
+			</File>
 		</Filter>
+		<File
+			RelativePath=".\res\WinInetPost.manifest">
+		</File>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="WinInetPost.rc"/>
 	</Globals>
 </VisualStudioProject>

@@ -218,6 +218,9 @@ HRESULT Uploader::DoUpload(UploadSettings *pSettings, UploadResults *pResults)
 	bResult = HttpSendRequestEx(hRequest, &buffersIn, NULL, HSR_INITIATE, reinterpret_cast<DWORD_PTR>(this));
 	if (!bResult)
 	{
+		// If GetLastError() == 6 (ERROR_INVALID_HANDLE), then this often means that
+		// the server wasn't actually up.  Unfortunately, I don't know of a better
+		// way to get more information.
 		InternetCloseHandle(hConnect);
 		InternetCloseHandle(hInternet);
 		TRACE("HttpSendRequestEx failed, error = %d (0x%x)\n", GetLastError(), GetLastError());
@@ -438,7 +441,26 @@ HRESULT Uploader::UploadFileContent(HINTERNET hRequest, LPCTSTR lpszPathName, HA
 	DWORD dwTimeStarted = GetTickCount() / PROGRESS_INTERVAL;
 	DWORD dwTimeLast = dwTimeStarted;
 
-	DWORD cbBuffer = m_pSettings->GetBufferSize();
+	/* The buffer size is a tradeoff.  Too small and the transfer rate will drop.
+	 * Too large and each write will take too long, and you'll not get useful progress
+	 * reporting.
+	 * What would have been nice is if the InternetStatusCallback was notified
+	 * on partial writes, but it's only notified when the entire buffer is flushed.
+	 * This makes it useless for adding progress to a large buffer.
+	 * Instead, we'll dynamically adjust the buffer size, so that each write is
+	 * taking about a second.
+	 */
+
+	// If a write takes less time than this, then increase the buffer size.
+	const DWORD LOW_WRITE_THRESHOLD = 500;
+	// If a write takes more time than this, then decrease the buffer size.
+	const DWORD HIGH_WRITE_THRESHOLD = 1250;
+
+	const size_t MIN_BUFFER_SIZE = 8192;
+	const size_t INITIAL_BUFFER_SIZE = 32768;
+	const size_t MAX_BUFFER_SIZE = 16 * 1024 * 1024;
+
+	DWORD cbBuffer = INITIAL_BUFFER_SIZE;
 	BYTE *pBuffer = (BYTE *)malloc(cbBuffer);
 
 	DWORD dwSecondsToFileCompletion = dwLocalFileSize / dwBytesPerSecond;
@@ -464,6 +486,8 @@ HRESULT Uploader::UploadFileContent(HINTERNET hRequest, LPCTSTR lpszPathName, HA
 		if (dwBytesRead == 0)
 			break;
 
+		DWORD dwWriteStartTime = GetTickCount();
+
 		// Write that to the other end:
 		DWORD dwBytesWritten;
 		if (!InternetWriteFile(hRequest, pBuffer, dwBytesRead, &dwBytesWritten))
@@ -480,6 +504,33 @@ HRESULT Uploader::UploadFileContent(HINTERNET hRequest, LPCTSTR lpszPathName, HA
 			// InternetGetLastResponseInfo doesn't do anything useful
 			// for HTTP connections at this point.
 			return HRESULT_FROM_WIN32(GetLastError());
+		}
+
+		DWORD dwWriteEndTime = GetTickCount();
+		DWORD dwWriteTicks = dwWriteEndTime - dwWriteStartTime;
+
+		if (dwWriteTicks < LOW_WRITE_THRESHOLD)
+		{
+			TRACE("Writing %d bytes took %d ms.\n", cbBuffer, dwWriteTicks);
+			TRACE("Increasing buffer size.\n");
+			// Increase the buffer size for increased performance.
+			if (cbBuffer < MAX_BUFFER_SIZE)
+				cbBuffer *= 2;
+			free(pBuffer);
+			pBuffer = (BYTE *)malloc(cbBuffer);
+		}
+		else if (dwWriteTicks > HIGH_WRITE_THRESHOLD)
+		{
+			TRACE("Writing %d bytes took %d ms.\n", cbBuffer, dwWriteTicks);
+			TRACE("Decreasing buffer size.\n");
+
+			// Decrease the buffer size for more regular progress reporting.
+			cbBuffer /= 2;
+			if (cbBuffer < INITIAL_BUFFER_SIZE)
+				cbBuffer = INITIAL_BUFFER_SIZE;
+
+			free(pBuffer);
+			pBuffer = (BYTE *)malloc(cbBuffer);
 		}
 
 		dwFileBytesSent += dwBytesWritten;

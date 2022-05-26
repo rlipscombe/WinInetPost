@@ -47,17 +47,4 @@ public:
 
 	DWORD GetCachedBytesPerSecond() const { return m_dwCachedBytesPerSecond; }
 	void SetCachedBytesPerSecond(DWORD dwBytesPerSecond) { m_dwCachedBytesPerSecond = dwBytesPerSecond; }
-
-	/* The buffer size is a tradeoff.  Too small and the transfer rate will drop.
-	 * Too large and each write will take too long, and you'll not get useful progress
-	 * reporting.
-	 * OTOH, It ought to be possible to use a large buffer size and hook the progress from
-	 * the InternetStatusCallback function.
-	 * Alternatively, the buffer size could be dynamically calculated until each write
-	 * is taking about a second (or whatever).
-	 */
-
-	static const DWORD BUFFER_SIZE = 8 * 1024;	// 8KB
-//	static const DWORD BUFFER_SIZE = 128 * 1024;	// 128KB
-	DWORD GetBufferSize() const { return BUFFER_SIZE; }
 };

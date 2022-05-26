@@ -22,9 +22,11 @@
 IMPLEMENT_DYNAMIC(CUploadWizard, CPropertySheet)
 
 CUploadWizard::CUploadWizard(UploadSettings *pSettings, UploadResults *pResults, HBITMAP hbmWatermark, HPALETTE hpalWatermark, HBITMAP hbmHeader)
-	: CPropertySheet(IDS_UNUSED_CAPTION, NULL, 0, hbmWatermark, hpalWatermark, hbmHeader)
+	: CPropertySheet(IDS_UNUSED_CAPTION, NULL, 0, hbmWatermark, hpalWatermark, hbmHeader), m_deferredPressButton(-1)
 {
-    AddPage(new CWelcomePage);
+ 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+
+	AddPage(new CWelcomePage);
 	AddPage(new CAddressPage(pSettings));
 	AddPage(new CSelectionPage(pSettings));
 	AddPage(new CProgressPage(pSettings, pResults));
@@ -87,6 +89,46 @@ CUploadWizard::~CUploadWizard()
 }
 
 BEGIN_MESSAGE_MAP(CUploadWizard, CPropertySheet)
+	ON_WM_SIZE()
+	ON_MESSAGE(PSM_PRESSBUTTON, OnPressButton)
 END_MESSAGE_MAP()
 
 // CUploadWizard message handlers
+void CUploadWizard::PreSubclassWindow()
+{
+	VERIFY(ModifyStyle(0, WS_MINIMIZEBOX));
+
+	CPropertySheet::PreSubclassWindow();
+}
+
+BOOL CUploadWizard::OnInitDialog()
+{
+	BOOL bResult = CPropertySheet::OnInitDialog();
+
+	SetIcon(m_hIcon, TRUE);
+	SetIcon(m_hIcon, FALSE);
+
+	m_deferredPressButton = -1;
+
+	return bResult;
+}
+
+void CUploadWizard::OnSize(UINT nType, int cx, int cy)
+{
+	if (nType == SIZE_RESTORED && m_deferredPressButton != -1)
+		PressButton(m_deferredPressButton);
+
+	CPropertySheet::OnSize(nType, cx, cy);
+}
+
+LRESULT CUploadWizard::OnPressButton(WPARAM wParam, LPARAM /*lParam*/)
+{
+	if (IsIconic())
+	{
+		TRACE("Deferring button press.\n");
+		m_deferredPressButton = (int)wParam;
+		return 0;
+	}
+	else
+		return Default();
+}

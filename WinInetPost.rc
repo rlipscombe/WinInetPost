@@ -274,6 +274,8 @@ BEGIN
     IDS_FAILED_UPLOAD_MESSAGE "The upload failed: %1!s!"
     IDS_HTTP_FAILED_UPLOAD_MESSAGE 
                             "Upload failed.  The server reported HTTP result code %1!d!"
+    IDS_UPLOAD_PROGRESS_CAPTION "Upload Files: %1!d!%%"
+    IDS_UPLOAD_COMPLETE_CAPTION "Upload Files: Done"
 END
 
 #endif    // English (U.S.) resources

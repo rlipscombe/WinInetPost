@@ -156,6 +156,13 @@ void CProgressPage::OnBackgroundUploadComplete(HRESULT hr)
 
 	SetDlgItemText(IDC_TIME_REMAINING, _T(""));
 
+	CString strCaption;
+	if (GetParent()->IsIconic())
+		VERIFY(strCaption.LoadString(IDS_UPLOAD_COMPLETE_CAPTION));
+	else
+		VERIFY(strCaption.LoadString(IDS_PROGRESS_PAGE_CAPTION));
+	GetParent()->SetWindowText(strCaption);
+
 	// Wait for the background thread to finish.
 	// TODO: Add comments explaining what happens to progress messages still
 	// in the queue, the possibility for deadlocks, memory leaks, etc.
@@ -224,6 +231,13 @@ void CProgressPage::OnFileProgress(LPCTSTR lpszPathName, DWORD dwFileBytesSent, 
 	strTimeRemaining.FormatMessage(IDS_TIME_REMAINING, LPCTSTR(strTimeInterval));
 
 	SetDlgItemText(IDC_TIME_REMAINING, strTimeRemaining);
+
+	CString strCaption;
+	if (GetParent()->IsIconic())
+		strCaption.FormatMessage(IDS_UPLOAD_PROGRESS_CAPTION, MulDiv(100, dwOverallBytesSent, dwOverallBytesTotal));
+	else
+		VERIFY(strCaption.LoadString(IDS_PROGRESS_PAGE_CAPTION));
+	GetParent()->SetWindowText(strCaption);
 }
 
 void CProgressPage::OnFileComplete(LPCTSTR lpszPathName, HRESULT hr)

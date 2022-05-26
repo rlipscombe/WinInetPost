@@ -145,7 +145,7 @@ HRESULT Uploader::DoUpload(UploadSettings *pSettings, UploadResults *pResults)
 	m_pSettings = pSettings;
 	m_pResults = pResults;
 
-	LPCTSTR lpszAgent = _T("WinInetPost/0.2");
+	LPCTSTR lpszAgent = _T("WinInetPost/0.0.4");
 	DWORD dwOpenInternetFlags = 0;//INTERNET_FLAG_ASYNC;
 	HINTERNET hInternet = InternetOpen(lpszAgent, INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, dwOpenInternetFlags);
 	if (!hInternet)
